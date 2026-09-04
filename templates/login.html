@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
+            padding: 20px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 12px 35px rgba(15, 23, 42, 0.12);
+        }
+
+        .logo {
+            width: 58px;
+            height: 58px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            background: #4f46e5;
+            color: #ffffff;
+            font-size: 28px;
+        }
+
+        h1 {
+            margin: 0;
+            text-align: center;
+            color: #111827;
+            font-size: 26px;
+        }
+
+        .subtitle {
+            margin: 10px 0 30px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: #374151;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 9px;
+            outline: none;
+            font-size: 15px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 9px;
+            background: #4f46e5;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #4338ca;
+        }
+
+        .error {
+            margin: 18px 0 0;
+            padding: 10px;
+            border-radius: 8px;
+            background: #fef2f2;
+            color: #dc2626;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .footer-text {
+            margin: 25px 0 0;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 12px;
+        }
+
+        @media (max-width: 500px) {
+            .login-container {
+                padding: 30px 22px;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="logo">📚</div>
+
+        <h1>Library Management System</h1>
+
+        <p class="subtitle">Sign in to access your library account</p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="input-group">
+                <label for="username">Username</label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter your username"
+                    required
+                >
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                >
+            </div>
+
+            <button type="submit">Sign In</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <p class="footer-text">
+            Library Management System
+        </p>
+
+    </div>
+
+</body>
+</html>

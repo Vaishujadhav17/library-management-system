@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 6%;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 19px;
+            font-weight: 700;
+        }
+
+        .brand-icon {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #4f46e5;
+            color: #ffffff;
+            border-radius: 9px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .nav-links a {
+            color: #4b5563;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #4f46e5;
+        }
+
+        .container {
+            width: 88%;
+            max-width: 1150px;
+            margin: 40px auto;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            margin: 0 0 8px;
+            font-size: 30px;
+        }
+
+        .welcome p {
+            margin: 0;
+            color: #6b7280;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            padding: 24px;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .card h3 {
+            margin: 0;
+            color: #6b7280;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .card-icon {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9px;
+            background: #eef2ff;
+            font-size: 20px;
+        }
+
+        .number {
+            margin: 18px 0 0;
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .admin-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .action-button {
+            display: inline-block;
+            padding: 11px 16px;
+            border-radius: 8px;
+            background: #4f46e5;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .action-button:hover {
+            background: #4338ca;
+        }
+
+        .secondary-button {
+            background: #ffffff;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+
+        .secondary-button:hover {
+            background: #f9fafb;
+        }
+
+        @media (max-width: 900px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 15px 5%;
+            }
+
+            .brand {
+                font-size: 16px;
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .container {
+                width: 90%;
+                margin: 30px auto;
+            }
+
+            .welcome h1 {
+                font-size: 25px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-actions {
+                flex-direction: column;
+            }
+
+            .action-button {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="brand">
+            <div class="brand-icon">📚</div>
+            Library Management
+        </div>
+
+        <div class="nav-links">
+            <a href="/admin/">Django Admin</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+
+    </nav>
+
+    <main class="container">
+
+        <div class="welcome">
+            <h1>Admin Dashboard 👋</h1>
+            <p>Monitor the library and manage your system.</p>
+        </div>
+
+        <div class="stats">
+
+            <div class="card">
+
+                <div class="card-header">
+                    <h3>Total Books</h3>
+                    <div class="card-icon">📚</div>
+                </div>
+
+                <p class="number">{{ total_books }}</p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-header">
+                    <h3>Available Copies</h3>
+                    <div class="card-icon">📖</div>
+                </div>
+
+                <p class="number">{{ total_available }}</p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-header">
+                    <h3>Total Students</h3>
+                    <div class="card-icon">🎓</div>
+                </div>
+
+                <p class="number">{{ total_students }}</p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-header">
+                    <h3>Total Librarians</h3>
+                    <div class="card-icon">👩‍💼</div>
+                </div>
+
+                <p class="number">{{ total_librarians }}</p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-header">
+                    <h3>Pending Requests</h3>
+                    <div class="card-icon">📩</div>
+                </div>
+
+                <p class="number">{{ pending_requests }}</p>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-header">
+                    <h3>Currently Issued</h3>
+                    <div class="card-icon">📕</div>
+                </div>
+
+                <p class="number">{{ issued_books }}</p>
+
+            </div>
+
+        </div>
+
+        <div class="admin-actions">
+
+            <a href="/admin/" class="action-button">
+                Open Django Admin
+            </a>
+
+            <a href="{% url 'logout' %}" class="action-button secondary-button">
+                Logout
+            </a>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
